@@ -10,7 +10,7 @@ public class Lesson3 {
         students[1] = "Иванов";
         students[2] = "Петров";
 
-        //@1b28cdfa по ссылке находится объект - [ Сидоров, Иванов, Петров]
+        //@1b28cdfa по ссылке находится объект - [ Сидоров, Иванов, Петров ]
         System.out.println(Arrays.toString(students));
 
         //[Сидоров, Иванов, Петров]
