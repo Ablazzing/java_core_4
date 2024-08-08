@@ -1,12 +1,21 @@
 package org.javaacademy.core.homework.homework1;
 
+
+import org.javaacademy.core.homework.homework1.oop_ex_5.CalcFinancialResult;
+
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.ZERO;
+import static java.math.BigDecimal.valueOf;
+
 public class Homework1 {
     public static void main(String[] args) {
-        ex2();
+        //ex2();
         System.out.println("___________________________________________");
-        ex3();
+         //ex3();
         System.out.println("___________________________________________");
-        ex4();
+        //ex4();
+        advanced();
     }
 
     public static void ex1() {
@@ -16,12 +25,14 @@ public class Homework1 {
     public static void ex2() {
         //Дана строка
         String name = "     ПЕтРов Олег Иванович     ";
-        //Необходимо
-        //1. убрать лишние пробелы,
-        //2. перевести текст в верхний регистр
-        //3. Если содержит "ова " то печатаем на экран: Уважаемая {name}
-        // Если содержит "ов " то печатаем на экран: Уважаемый {name}
-        // В иных случаях печатаем на экран: Неизвестное лицо {name}
+        String convertedName = name.trim().toUpperCase();
+        if (convertedName.contains("ОВА ")) {
+            System.out.println("Уважаемая " + convertedName);
+        } else if (convertedName.contains("ОВ ")) {
+            System.out.println("Уважаемый " + convertedName);
+        } else {
+            System.out.println("Неизвестное лицо " + convertedName);
+        }
     }
 
     public static void ex3() {
@@ -41,11 +52,26 @@ public class Homework1 {
         //Поменять(убрать, поставить) логические операторы так, чтобы машина запускалась:
         // когда топлива не меньше 10 литров, двигатель работает, колеса работают, нет ошибок
         //В ином случае, машина не должна запускаться
+
+        //&&
+        //true - 1
+        //false - 0
+        // 1 && 0 - 0
+        // 1 && 1 - 1
+
+        //Файл
+        // чтение удаление изменение
+        //  true   false    false
+        //   1      0        0 - роль 1
+        //  0      1         1 - роль 2
+        // роль1 | роль2
+        // 1        1       1 -> 8
+
         if (
-                fuel < 10
-                ||  (!isWheelWork1 || isWheelWork2 || isWheelWork3 || isWheelWork4)
-                    && hasErrors
-                || isEngineWork
+                fuel >= 10
+                && (isWheelWork1 && isWheelWork2 && isWheelWork3 && isWheelWork4)
+                && !hasErrors
+                && isEngineWork
         ) {
             System.out.println("Машина едет");
         } else {
@@ -59,6 +85,11 @@ public class Homework1 {
         //получить индекс (число) второй буквы 'o' в строке. ПОЛУЧЕНИЕ ИНДЕКСА ЧЕРЕЗ ФУНКЦИЮ!
         //Распечатать полученный индекс
         String simply = "this is simply. This is my favorite song.";
+        //String simply = "those are simply. This is my favorite song.";
+        String converted = simply.replaceAll("this is", "those are");
+        int firstIndex = converted.indexOf("o");
+        int secondIndex = converted.indexOf("o", firstIndex + 1);
+        System.out.println(secondIndex);
     }
 
     /**
@@ -80,11 +111,17 @@ public class Homework1 {
         //Шейка - стоимость 500 руб
         //себестоимость при производстве меньше 500кг - 311 руб
         //себестоимость при производстве больше или равно 500кг - 299 руб
-        int priceSausage = 800;
-        double selfPrice = 404;
         int countSausage = 2000;
+        long countHam = 8511;
+        long countNeck = 6988;
 
-
+        CalcFinancialResult calcFinancialResult = new CalcFinancialResult("800", "350", "500");
+        System.out.println("___________________________________________");
+        System.out.println("Расчет №1");
+        calcFinancialResult.calculateProfitTax(countSausage, countHam, countNeck);
+        System.out.println("___________________________________________");
+        System.out.println("Расчет №2");
+        calcFinancialResult.calculateProfitTax(1000, 1000, 1000);
 
         //Финансовые показатели
         //Доход компании считается как умножение стоимости на количество проданных кг
@@ -105,8 +142,6 @@ public class Homework1 {
         //Т.е на вход подаются данные по количеству произведенных продуктов
         // и печатается прибыль после налогов компании
         //Узнать прибыль после налогов, при продаже всех товаров:
-        //Колбасы 2000кг - это произведено и продано
-        //Ветчины 8511кг - это произведено и продано
-        //Шейки 6988кг - это произведено и продано
+
     }
 }
