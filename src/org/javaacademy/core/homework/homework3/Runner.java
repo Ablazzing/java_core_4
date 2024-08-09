@@ -77,9 +77,11 @@ public class Runner {
         // эти изменения не затронут дом находящийся внутри города.
         // Т.е. результат должен соответствовать псевдокоду ниже:
         //
-        // City city = new City({new House('Lenina', 1)});
+        //[] - квадратные скобки - массив
+        //{} - объект
+        // City city = new City([{new House('Lenina', 1)}], "Мурманск");
         // System.out.println(city);
-        //-- City{House{street: Lenina, house: 1}}
+        //-- City{[House{street: Lenina, house: 1}], name: "Мурманск"}
         //House house = city.getHouses()[0];
         //house.setStreet('Kotova');
         //System.out.println(house);
