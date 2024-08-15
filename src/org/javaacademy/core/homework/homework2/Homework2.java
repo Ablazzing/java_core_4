@@ -5,9 +5,10 @@ import java.util.Random;
 
 public class Homework2 {
     public static void main(String[] args) {
-        ex1();
-        ex2();
-        ex3();
+        //ex1();
+        //ex2();
+        //ex3();
+        ex5();
     }
 
     public static void ex1() {
@@ -15,6 +16,11 @@ public class Homework2 {
         String[] words = {"Это", "шашлык", "на", "шампуре"};
         //С помощью циклов и функции String.substring составить итоговый текст
         //Это-шашлык-на-шампуре
+        String result = "";
+        for (String word : words) {
+            result += word + "-";
+        }
+        System.out.println(result.substring(0, result.length() - 1));
 
     }
 
@@ -31,27 +37,35 @@ public class Homework2 {
         arrayOfNumbers[7] = new int[]{1, 1, 30, 1, 1, 1, 1, 83, 1, 1};
         arrayOfNumbers[8] = new int[]{1, 20, 1, 1, 1, 1, 1, 1, 901, 1};
         arrayOfNumbers[9] = new int[]{10, 1, 1, 1, 1, 1, 1, 1, 1, 101};
-
         //Посчитать сумму каждой диагонали ИСПОЛЬЗУЯ цикл(ы)
-
-
         //С левого верхнего угла к нижнему правому
         int leftUpToRightDownSum = 0; //
         //С левого нижнего угла к верхнему правому
         int leftDownToRightUpSum = 0;
 
+        for (int i = 0; i < arrayOfNumbers.length; i++) {
+            leftUpToRightDownSum += arrayOfNumbers[i][i];
+            leftDownToRightUpSum += arrayOfNumbers[i][arrayOfNumbers.length - i - 1];
+        }
 
         //Вывести на экран
+        System.out.println(leftUpToRightDownSum);
+        System.out.println(leftDownToRightUpSum);
     }
 
     public static void ex3() {
         //Дан распределитель случайных чисел
         Random random = new Random(1);
-        //Получение случайного числа
-        int number = random.nextInt(1000);
 
+        //Получение случайного числа
         //Написать код, генерирующий случайные числа до тех пор, пока не сгенерируется 999.
         //Вывести номер попытки, с которой получилось получить случайным образом число 999.
+        int countTries = 1;
+        while (random.nextInt(1000) != 999) {
+            countTries++;
+        }
+
+        System.out.println(countTries);
     }
 
     public static void ex4() {
@@ -78,10 +92,15 @@ public class Homework2 {
      * Для продвинутых
      */
     public static void ex5() {
-        //Перевернуть массив(без сторонних классов,методов и стримов), не создавая новый массив.
+        //Перевернуть массив(без сторонних классов, методов и стримов), не создавая новый массив.
         // Вывести на экран.
         //"перевернуть" - значит последние элементы становятся первыми и наоборот.
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-
+        for (int i = 0; i < numbers.length / 2; i++) {
+            int temp = numbers[i];
+            numbers[i] = numbers[numbers.length - i - 1];
+            numbers[numbers.length - i - 1] = temp;
+        }
+        System.out.println(Arrays.toString(numbers));
     }
 }
