@@ -9,7 +9,7 @@ public class Car {
 
     public void go() throws CarHasNoFuelException {
         if (fuel <= 0) {
-                throw new CarHasNoFuelException("У машины нет бензина!");
+            throw new CarHasNoFuelException("У машины нет бензина!");
         }
         System.out.println("Машина едет!");
     }

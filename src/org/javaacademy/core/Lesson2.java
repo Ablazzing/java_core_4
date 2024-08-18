@@ -30,7 +30,7 @@ public class Lesson2 {
         int breadPrice = 120; //стоимость хлеба
         int waterPrice = 20; //стоимость воды
         boolean result2 = (breadPrice + waterPrice) <= money2;
-        if (  result2 ) {
+        if (result2) {
             System.out.println("Покупаю хлеб и воду");
         } else {
             System.out.println("Не покупаю не то, не другое");

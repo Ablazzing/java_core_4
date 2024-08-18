@@ -15,5 +15,5 @@ public class Mouse extends Mammal {
      */
     public void eatCheese() {
         System.out.println("Мышь ест сыр");
-    };
+    }
 }

@@ -23,7 +23,7 @@ public class Firm {
 //        }
         try {
             worker.chop();
-        } catch (AxeIsBrokenException | WorkerIsDrunkException e ) {
+        } catch (AxeIsBrokenException | WorkerIsDrunkException e) {
             System.out.println("Проблемы у сотрудника, толи топор сломан, толи он пьян!");
         }
         System.out.println("Заделали много денег!");

@@ -6,7 +6,7 @@ public enum CountryEnum {
 
     private String name;
     private int countPeople;
-//
+
     CountryEnum(String name, int countPeople) {
         this.name = name;
         this.countPeople = countPeople;

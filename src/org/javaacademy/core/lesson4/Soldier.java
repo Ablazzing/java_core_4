@@ -4,10 +4,10 @@ package org.javaacademy.core.lesson4;
  * Класс Солдатик
  */
 public class Soldier {
-    String name;//Это свойство (Атрибут)
-    int hp;//Это свойство (Атрибут)
-    String title = "Рядовой";//Это свойство (Атрибут)
-    String[] artefacts;//Это свойство (Атрибут)
+    String name; //Это свойство (Атрибут)
+    int hp; //Это свойство (Атрибут)
+    String title = "Рядовой"; //Это свойство (Атрибут)
+    String[] artefacts; //Это свойство (Атрибут)
 
     //Конструктор
     public Soldier() {

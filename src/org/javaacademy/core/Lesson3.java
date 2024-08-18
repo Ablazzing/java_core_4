@@ -38,7 +38,7 @@ public class Lesson3 {
         System.out.println(letters);
 
         //Длина массива
-        System.out.println("Длина массива" +letters.length);
+        System.out.println("Длина массива" + letters.length);
         System.out.println("___________________________________________");
 
         //Распечатать каждого студента на новой строке
@@ -54,27 +54,27 @@ public class Lesson3 {
 
         System.out.println("___________________________________________");
         //Посчитать сумму покупок из магазина
-       double[] orders = {2.5, 1.5, 2, 2};
-       double sum = 0;
+        double[] orders = {2.5, 1.5, 2, 2};
+        double sum = 0;
 
-       for (double order : orders) {
-           sum = sum + order;
-       }
+        for (double order : orders) {
+            sum = sum + order;
+        }
         System.out.println("Сумма заказа: " + sum);
-       System.out.println("___________________________________________");
+        System.out.println("___________________________________________");
 
         System.out.println("Распечатать только четные цифры из рулетки");
-       //Распечатать только четные цифры из рулетки
-       int[] roulette = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        //Распечатать только четные цифры из рулетки
+        int[] roulette = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
-       for (int numberRoulette : roulette) {
-           if (numberRoulette % 2 == 0) {
-               System.out.println("Четное число: " + numberRoulette);
-           }
-       }
-       System.out.println("___________________________________________");
+        for (int numberRoulette : roulette) {
+            if (numberRoulette % 2 == 0) {
+                System.out.println("Четное число: " + numberRoulette);
+            }
+        }
+        System.out.println("___________________________________________");
 
-       //Распечатать только первые 5 выпавших цифр
+        //Распечатать только первые 5 выпавших цифр
         System.out.println("Распечатать только первые 5 выпавших цифр рулетки");
         int[] rouletteResult = {36, 5, 10, 12, 1, 2, 7, 8};
 //        int countIterations = 0;

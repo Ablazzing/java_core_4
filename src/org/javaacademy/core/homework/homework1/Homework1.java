@@ -12,7 +12,7 @@ public class Homework1 {
     public static void main(String[] args) {
         //ex2();
         System.out.println("___________________________________________");
-         //ex3();
+        //ex3();
         System.out.println("___________________________________________");
         //ex4();
         advanced();
