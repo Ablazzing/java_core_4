@@ -1,9 +1,37 @@
 package org.javaacademy.core.homework.homework4;
 
+import org.javaacademy.core.homework.homework4.ex1.CarWashing;
+import org.javaacademy.core.homework.homework4.ex1.car.Bus;
+import org.javaacademy.core.homework.homework4.ex1.car.Car;
+import org.javaacademy.core.homework.homework4.ex1.car.LightCar;
+import org.javaacademy.core.homework.homework4.ex2.Airplane;
+import org.javaacademy.core.homework.homework4.ex2.Duck;
+import org.javaacademy.core.homework.homework4.ex2.FlyException;
+import org.javaacademy.core.homework.homework4.ex2.Flyable;
+import org.javaacademy.core.homework.homework4.ex3.Bird;
+import org.javaacademy.core.homework.homework4.ex3.Builder;
+import org.javaacademy.core.homework.homework4.ex3.Driver;
+import org.javaacademy.core.homework.homework4.ex3.Human;
+import org.javaacademy.core.homework.homework4.ex3.MakingSound;
+import org.javaacademy.core.homework.homework4.ex4.ActionForDeadAliveException;
+import org.javaacademy.core.homework.homework4.ex4.herbivore.Elephant;
+import org.javaacademy.core.homework.homework4.ex4.herbivore.Rabbit;
+import org.javaacademy.core.homework.homework4.ex4.predator.Tiger;
+import org.javaacademy.core.homework.homework4.ex4.predator.Wolf;
+
 public class Runner {
+    public static void main(String[] args) {
+        //ex1();
+        //ex2();
+        //ex3();
+        ex4();
+    }
+
     public static void ex1() {
-        //Создать легковую машину (атрибуты: чистая/грязная, размеры(ширина,высота,длина), наличие круиз контроля)
-        //Создать автобус (атрибуты: чистый/грязный, размеры(ширина,высота,длина), макс количество пассажиров)
+        //Создать легковую машину (атрибуты: чистая/грязная, размеры(ширина,высота,длина),
+        // наличие круиз контроля)
+        //Создать автобус (атрибуты: чистый/грязный, размеры(ширина,высота,длина),
+        // макс количество пассажиров)
         //Создать автомойку
         //Автомойка умеет мыть машину. Делает машину чистой. Возвращает стоимость помывки.
         //Автомойка умеет мыть машины. Делает машины чистыми. Возвращает стоимость помывки за все машины.
@@ -15,6 +43,17 @@ public class Runner {
         //В автомойку были отправлены грязные машины мэрии: 4 легковых(длина высота ширина) (5х2х1.8),
         //5 автобусов(12х3х2.3)
         //Посчитать и вывести: сколько мэрия заплатит денег за мойку всех машин.
+        int countLightCars = 4;
+        int countBusCars = 5;
+        Car[] cars = new Car[countLightCars + countBusCars];
+        for (int i = 0; i < countLightCars; i++) {
+            cars[i] = new LightCar(2, 5, 1.8, false);
+        }
+        for (int i = countLightCars; i < countLightCars + countBusCars; i++) {
+            cars[i] = new Bus(3, 12, 2.3, 50);
+        }
+        CarWashing carWashing = new CarWashing();
+        System.out.println(carWashing.wash(cars));
     }
 
     public static void ex2() {
@@ -38,6 +77,18 @@ public class Runner {
         // Ошибка: утка ранена
         // самолет летит
         // Ошибка: пассажиров в самолете меньше 0
+        Duck duck = new Duck(false);
+        Duck duckInjured = new Duck(true);
+        Airplane airplane = new Airplane(10);
+        Airplane airplaneNotCorrect = new Airplane(-1);
+        Flyable[] flyables = {duck, duckInjured, airplane, airplaneNotCorrect};
+        for (Flyable flyable : flyables) {
+            try {
+                flyable.fly();
+            } catch (FlyException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void ex3() {
@@ -50,6 +101,14 @@ public class Runner {
         //Сделать так, чтобы они все могли быть представлены к единому типу - "Издающий звук".
         //Создать в этом методе человека, строителя, водителя и птицу. Запихнуть в единый массив.
         //Пройтись по массиву и заставить их издать звуки.
+        MakingSound bird = new Bird();
+        MakingSound human = new Human();
+        MakingSound builder = new Builder();
+        MakingSound driver = new Driver();
+        MakingSound[] makingSounds = {bird, human, builder, driver};
+        for (MakingSound object : makingSounds) {
+            System.out.println(object.makeSound());
+        }
     }
 
     public static void ex4() {
@@ -88,5 +147,21 @@ public class Runner {
         //6.Слон пробегает
         //7.Вызвать у съеденного кролика бег, сделать так, чтобы программа НЕ закончилась с ошибкой,
         //а распечатала текст ошибки.
+
+        Tiger tiger = new Tiger(300);
+        Wolf wolf = new Wolf(50);
+        Rabbit rabbit = new Rabbit(2);
+        Elephant elephant = new Elephant(2000);
+
+        rabbit.run();
+        wolf.attack(rabbit);
+        tiger.attack(wolf);
+        tiger.attack(elephant);
+        elephant.run();
+        try {
+            rabbit.run();
+        } catch (ActionForDeadAliveException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
