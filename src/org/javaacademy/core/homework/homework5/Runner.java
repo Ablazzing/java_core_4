@@ -1,32 +1,78 @@
 package org.javaacademy.core.homework.homework5;
 
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+
+import static java.math.BigDecimal.ZERO;
 
 public class Runner {
-    public static void main(String[] args) throws FileNotFoundException {
+    private static final int MONEY_FIELD_INDEX = 1;
+    private static final int COUNTRY_FIELD_INDEX = 0;
+    private static final int MINIMUM_FIELDS_COUNT = 2;
+    private static final String DELIMITER = ";";
 
+    public static void main(String[] args) throws FileNotFoundException {
+        ex1();
     }
 
     private static void ex1() {
-        //Донаты со всего мира
-        //Одному блогеру присылают пожертвования(донаты) за его ролики
-        //Данные о пожертвованиях содержатся в файле donation.csv (папка resources)
-        //Необходимо посчитать сумму пожертвований от пользователей из каждой страны
-        //Если сумма написана некорректно, то программа должна пропускать строчку (не завершать работу)
         String[] countries = {"Россия", "Франция", "Китай", "Япония", "Турция"};
-        String filename = "donation.csv";
-        //Чтение файла из папки resources (без привязки к конкретному расположению проекта)
-        Scanner scanner = new Scanner(Runner.class.getClassLoader().getResourceAsStream(filename));
-        System.out.println(scanner.nextLine());
+        BigDecimal[] moneyForCountry = new BigDecimal[countries.length];
+        Arrays.fill(moneyForCountry, ZERO);
 
-        //Ожидаемый вывод:
-        //Список пожертвований по странам (пример):
-        //Россия - 14233.00
-        //Франция - 8000.32
-        //Китай - 20000.11
-        //Япония - 124.10
-        //Турция - 777.55
+        String filename = "donation.csv";
+        try (Scanner scanner = new Scanner(Runner.class.getClassLoader().getResourceAsStream(filename));) {
+            readAllLines(scanner, moneyForCountry, countries);
+        }
+        System.out.println("Список пожертвований по странам");
+        for (int i = 0; i < countries.length; i++) {
+            System.out.printf("%s - %s\n", countries[i], moneyForCountry[i]);
+        }
+    }
+
+    private static void readAllLines(Scanner scanner, BigDecimal[] moneyForCountry, String[] countries ) {
+        scanner.nextLine();
+        while (scanner.hasNext()) {
+            String text = scanner.nextLine();
+            BigDecimal moneyFromCountry = getNumberFromLine(text);
+            addMoneyToCountryResult(countries, moneyForCountry, moneyFromCountry, getCountryName(text));
+        }
+    }
+
+    private static String getCountryName(String textLine) {
+        String[] fields = textLine.split(DELIMITER);
+        if (fields.length == 0) {
+            return "";
+        }
+        return fields[COUNTRY_FIELD_INDEX];
+    }
+
+    private static void addMoneyToCountryResult(String[] countries,
+                                                BigDecimal[] countryResults,
+                                                BigDecimal moneyFromCountry,
+                                                String countryName) {
+        for (int i = 0; i < countries.length; i++) {
+            if (countries[i].equals(countryName)) {
+                countryResults[i] = countryResults[i].add(moneyFromCountry);
+            }
+        }
+    }
+
+    private static BigDecimal getNumberFromLine(String textLine) {
+        String[] fields = textLine.split(DELIMITER);
+        if (fields.length >= MINIMUM_FIELDS_COUNT && isNumber(fields[MONEY_FIELD_INDEX])) {
+            String convertedMoney = fields[MONEY_FIELD_INDEX].replace(",", ".");
+            return new BigDecimal(convertedMoney);
+        }
+        return ZERO;
+    }
+
+    private static boolean isNumber(String text) {
+        Pattern pattern = Pattern.compile("^\\d+,\\d+$");
+        return pattern.matcher(text).find();
     }
 
     private static void ex2() {
